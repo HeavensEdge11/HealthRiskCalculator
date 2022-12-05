@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!--
+    Author: Tyler Nelson
+    Project: Health Insurance Risk Calculator
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Health Insurance Risk Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Tyler's Health Risk Calculator</h1>
+<h2>Hello and Welcome.</h2>
+
+<h3>The instructions are below.</h3>
+<p>This health insurance risk calculator is to help you and health insurance companies determine the
+        best health insurance plan according to their personal risk levels. The risk levels are calculated
+        through the individual's body mass index, blood pressure, age, and family history. Please fill out 
+        the fields below.
+</p>
+
+<label class="l1" name = "age">Please select the individual's age:</label>
+    <br />
+    <select id="Age">
+        <option value="Under 30">Under 30</option>
+        <option value="10">30 to 45</option>
+        <option value="20">45 to 60</option>
+        <option value="30">Over 60</option>
+    </select>
+
+    <br /><br />
+
+    <label class="i1">Enter the individual's height in feet and inches:</label>
+    <br />
+    <input id="heightFeet" type="number" placeholder="0"></input> feet <input id="height_in_inches" type="number" placeholder="0"></input> inches
+
+    <br /><br />
+
+    <label class="i2">Enter the individual's weight in pounds:</label>
+    <br />
+    <input id="weight" type="number" placeholder="0"></input> pounds
+
+    <br /><br />
+
+    <label class="i3">Enter the individual's systolic blood pressure:</label>
+    <br />
+    <input id="systolic" type="number" placeholder="0"></input>
+
+    <br /><br />
+
+    <label class="i4">Enter the individual's diastolic blood pressure:</label>
+    <br />
+    <input id="diastolic" type="number" placeholder="0"></input>
+
+    <br /><br />
+
+    <label class="l2">Does the individual have a family history of diabetes?</label>
+    <select id="diabetes">
+        <option value="0">No</option>
+        <option value="10">Yes</option>
+    </select>
+
+    <br /><br />
+
+    <label class="l3">Does the individual have a family history of cancer?</label>
+    <select id="cancer">
+        <option value="0">No</option>
+        <option value="10">Yes</option>
+    </select>
+
+        <br /><br />
+
+        <label class="l4">Does the individual have a family history of Alzheimers?</label>
+        <select id="alzheimers">
+            <option value="0">No</option>
+            <option value="10">Yes</option>
+        </select>
+
+        <br /><br />
+        <button onclick="totalRisk()">Calculate Risk</button>
+        <p id="Insurance"></p>
+
+
+        <script>
+            console.log("Tyler's Health Insurance Risk Calculator");
+
+            function totalRisk() 
+                console.log("totalRisk");
+
+                let ageRisk = document.getElementById("Age").selectedOptions[0].value;
+                let diabetesRisk = parseInt(document.getElementById("diabetes").selectedOptions[0].value);
+                let cancerRisk = parseInt(document.getElementById("cancer").selectedOptions[0].value);
+                let alzheimersRisk = parseInt(document.getElementById("alzheimers").selectedOptions[0].value);
+
+                let weightInPounds = document.getElementById("weight").value;
