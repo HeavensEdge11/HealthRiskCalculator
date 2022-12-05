@@ -73,7 +73,7 @@
         <option value="10">Yes</option>
     </select>
 
-        <br /><br />
+    <br /><br />
 
         <label class="l4">Does the individual have a family history of Alzheimers?</label>
         <select id="alzheimers">
@@ -89,7 +89,7 @@
         <script>
             console.log("Tyler's Health Insurance Risk Calculator");
 
-            function totalRisk() 
+            function totalRisk() {
                 console.log("totalRisk");
 
                 let ageRisk = document.getElementById("Age").selectedOptions[0].value;
@@ -98,3 +98,7 @@
                 let alzheimersRisk = parseInt(document.getElementById("alzheimers").selectedOptions[0].value);
 
                 let weightInPounds = document.getElementById("weight").value;
+            }
+        </script>
+    </body>
+</html> 
