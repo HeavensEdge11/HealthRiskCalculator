@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
-<!--
+<!-- saved from url=(0084)file:///C:/Users/tyler/lewis/cpsc-20000/Sprint-Seven/HealthRiskCalculator/index.html -->
+<html lang="en-US"><!--
     Author: Tyler Nelson
     Project: Health Insurance Risk Calculator
--->
-
-<head>
-    <meta charset="UTF-8">
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <title>Health Insurance Risk Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="file:///C:/Users/tyler/lewis/cpsc-20000/Sprint-Seven/HealthRiskCalculator/style.css">
 </head>
 
 <body>
@@ -24,40 +21,40 @@
         the fields below.
 </p>
 
-<label class="l1" name = "age">Please select the individual's age:</label>
-    <br />
+<label class="l1" name="age">Please select the individual's age:</label>
+    <br>
     <select id="Age">
-        <option value="Under 30">Under 30</option>
+        <option value="0">Under 30</option>
         <option value="10">30 to 45</option>
         <option value="20">45 to 60</option>
         <option value="30">Over 60</option>
     </select>
 
-    <br /><br />
+    <br><br>
 
     <label class="i1">Enter the individual's height in feet and inches:</label>
-    <br />
-    <input id="heightFeet" type="number" placeholder="0"></input> feet <input id="height_in_inches" type="number" placeholder="0"></input> inches
+    <br>
+    <input id="heightFeet" type="number" placeholder="0"> feet <input id="height_in_inches" type="number" placeholder="0"> inches
 
-    <br /><br />
+    <br><br>
 
-    <label class="i2">Enter the individual's weight in pounds:</label>
-    <br />
-    <input id="weight" type="number" placeholder="0"></input> pounds
+    <label class="i2">Enter the individual's weight in Kg:</label>
+    <br>
+    <input id="weight" type="number" placeholder="0"> Kg
 
-    <br /><br />
+    <br><br>
 
     <label class="i3">Enter the individual's systolic blood pressure:</label>
-    <br />
-    <input id="systolic" type="number" placeholder="0"></input>
+    <br>
+    <input id="systolic" type="number" placeholder="0">
 
-    <br /><br />
+    <br><br>
 
     <label class="i4">Enter the individual's diastolic blood pressure:</label>
-    <br />
-    <input id="diastolic" type="number" placeholder="0"></input>
+    <br>
+    <input id="diastolic" type="number" placeholder="0">
 
-    <br /><br />
+    <br><br>
 
     <label class="l2">Does the individual have a family history of diabetes?</label>
     <select id="diabetes">
@@ -65,7 +62,7 @@
         <option value="10">Yes</option>
     </select>
 
-    <br /><br />
+    <br><br>
 
     <label class="l3">Does the individual have a family history of cancer?</label>
     <select id="cancer">
@@ -73,7 +70,7 @@
         <option value="10">Yes</option>
     </select>
 
-    <br /><br />
+    <br><br>
 
         <label class="l4">Does the individual have a family history of Alzheimers?</label>
         <select id="alzheimers">
@@ -81,24 +78,108 @@
             <option value="10">Yes</option>
         </select>
 
-        <br /><br />
-        <button onclick="totalRisk()">Calculate Risk</button>
+        <br><br>
+        <button onclick="totalRisks()">Calculate Risk</button>
         <p id="Insurance"></p>
+        <br><br>
+        <button onclick="StartOver()">If another Patient</button>
+
 
 
         <script>
             console.log("Tyler's Health Insurance Risk Calculator");
 
-            function totalRisk() {
+            function totalRisks() {
                 console.log("totalRisk");
 
-                let ageRisk = document.getElementById("Age").selectedOptions[0].value;
-                let diabetesRisk = parseInt(document.getElementById("diabetes").selectedOptions[0].value);
-                let cancerRisk = parseInt(document.getElementById("cancer").selectedOptions[0].value);
-                let alzheimersRisk = parseInt(document.getElementById("alzheimers").selectedOptions[0].value);
+                let totalRisk = 0;
+                let Feet = parseInt(document.getElementById("heightFeet").value);
+                let Inches = parseInt(document.getElementById("height_in_inches").value);
+                let weight = parseInt(document.getElementById("weight").value);
+                let BMI = ((Feet*12) + Inches)*0.0254;
+                BMI = ((weight) / (BMI*BMI));
+                let Systolic = parseInt(document.getElementById("systolic").value);
+                let Diastolic = parseInt(document.getElementById("diastolic").value);
 
-                let weightInPounds = document.getElementById("weight").value;
+                let ageRisk = parseInt(document.getElementById("Age").value);
+                let diabetesRisk = parseInt(document.getElementById("diabetes").value);
+                let cancerRisk = parseInt(document.getElementById("cancer").value);
+                let alzheimersRisk = parseInt(document.getElementById("alzheimers").value);
+
+
+                if (ageRisk < 30 ) {
+                    totalRisk += 0;
+                } else if (ageRisk < 45 ) {
+                    totalRisk += 10;
+                } else if (ageRisk < 60 ) {
+                    totalRisk += 20;
+                } else {
+                    totalRisk += 30
+                }
+
+                if (BMI < 24.9 && BMI>18.5 ) {
+                    totalRisk += 0;
+                } else if (BMI < 29.9 && BMI >25.0 ) {
+                    totalRisk += 30;
+                } else {
+                    totalRisk += 75;
+                }
+
+                if(Systolic < 120 && Diastolic < 80){
+                    totalRisk += 0
+                } else if((Systolic >= 120 && Systolic <= 129) && Diastolic < 80){
+                     totalRisk += 15
+                } else if((Systolic >= 130 && Systolic <= 139) || (Diastolic >= 80 && Diastolic <= 89)){
+                        totalRisk += 30
+                } else if(Systolic >= 140 || Diastolic >= 90){
+                        totalRisk += 75
+                } else if(Systolic >= 180 || Diastolic >= 120){
+                        totalRisk += 100
+                }
+
+
+                if (diabetesRisk == 0) {
+                    totalRisk += 0
+                } else  {
+                    totalRisk += 10
+                }
+
+                if (cancerRisk == 0) {
+                    totalRisk += 0
+                } else  {
+                    totalRisk += 10
+                }
+
+                if (alzheimersRisk == 0) {
+                    totalRisk += 0
+                } else {
+                    totalRisk += 10
+                }
+                
+                if(totalRisk <= 20){
+                    document.getElementById("Insurance").innerHTML = "Low Risk";
+                } else if(totalRisk <= 50){
+                    document.getElementById("Insurance").innerHTML = "Moderate Risk";
+                } else if(totalRisk <= 75){
+                    document.getElementById("Insurance").innerHTML = "High Risk";
+                } else{
+                    document.getElementById("Insurance").innerHTML = "Uninsurable";
+                }
             }
+                function StartOver() {
+                    document.getElementById('Insurance').innerHTML = ''
+                    document.getElementById('alzheimers').value = ''
+                    document.getElementById('cancer').value = ''
+                    document.getElementById('diabetes').value = ''
+                    document.getElementById('diastolic').value = ''
+                    document.getElementById('Age').value = ''
+                    document.getElementById('systolic').value = ''
+                    document.getElementById('weight').value = ''
+                    document.getElementById('height_in_inches').value = ''
+                    document.getElementById('heightFeet').value = ''
+
+                }
+
         </script>
-    </body>
-</html> 
+    
+ </body></html>
